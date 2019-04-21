@@ -32,7 +32,7 @@ Cherry_Rainier_t = 0
 Cherry_Rainier_f = 0
 Cherry_Wax_Black_t = 0
 Cherry_Wax_Black_f = 0
-Cheery_Wax_Red_t = 0
+Cherry_Wax_Red_t = 0
 Cherry_Wax_Red_f = 0
 
 for i, ret in enumerate(os.walk('./test-data/CherryRainier')):
