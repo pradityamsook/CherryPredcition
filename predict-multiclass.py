@@ -19,17 +19,19 @@ def predict(file):
   array = model.predict(x)
   result = array[0]
   answer = np.argmax(result)
-  if answer == 0 or answer == 1 or answer == 2:
+  if answer == 0:
     print("Label: Cherry")
-	elif answer == 3:
-		print("Label: Raspberry")
+  elif answer == 1:
+    print("Label: Kiwi")
+  elif answer == 2:
+    print("Label: Raspberry")
 
   return answer
 
 Cherry_Rainier_t = 0
 Cherry_Rainier_f = 0
-Cherry_Wax_Black_t = 0
-Cherry_Wax_Black_f = 0
+Kiwi_t = 0
+Kiwi_f = 0
 Cherry_Wax_Red_t = 0
 Cherry_Wax_Red_f = 0
 
@@ -44,28 +46,16 @@ for i, ret in enumerate(os.walk('./test-data/CherryRainier')):
     else:
       Cherry_Rainier_f += 1
 
-for i, ret in enumerate(os.walk('./test-data/CherryWaxBlack')):
+for i, ret in enumerate(os.walk('./test-data/Kiwi')):
   for i, filename in enumerate(ret[2]):
     if filename.startswith("."):
       continue
     #print("Label: Cherry Wax Black")
     result = predict(ret[0] + '/' + filename)
     if result == 1:
-      Cherry_Wax_Black_t += 1
+      Kiwi_t += 1
     else:
-      Cherry_Wax_Black_f += 1
-
-for i, ret in enumerate(os.walk('./test-data/CherryWaxRed')):
-  for i, filename in enumerate(ret[2]):
-    if filename.startswith("."):
-      continue
-    #print("Label: Cherry Wax Red")
-    result = predict(ret[0] + '/' + filename)
-    if result == 2:
-      print(ret[0] + '/' + filename)
-      Cherry_Wax_Red_t += 1
-    else:
-      Cherry_Wax_Red_f += 1
+      Kiwi_f += 1
 
 for i, ret in enumerate(os.walk('./test-data/Raspberry')):
   for i, filename in enumerate(ret[2]):
@@ -84,10 +74,9 @@ Check metrics
 """
 print("True Cherry: ", Cherry_Rainier_t)
 print("False Cherry: ", Cherry_Rainier_f)
-print("True Cherry: ", Cherry_Wax_Black_t)
-print("False Cherry: ", Cherry_Wax_Black_f)
-print("True Cherry: ", Cherry_Wax_Red_t)
-print("False Cherry: ", Cherry_Wax_Red_f)
+
+print("True Kiwi: ", Kiwi_t)
+print("False Kiwi: ", Kiwi_f)
 
 print("True Raspberry: ", Raspberry_t)
 print("False Raspberry: ", Raspberry_f)

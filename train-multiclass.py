@@ -1,13 +1,3 @@
-"""
-Usage: python train-multiclass.py
-Based on https://github.com/tatsuyah/CNN-Image-Classifier
-Collect training data and deploy it like this.
-e.g. 3-classes classification daisy, roses, sunflowers
-
-  ./data/
-    train/
-
-"""""
 
 import sys
 import os
@@ -58,7 +48,7 @@ model.add(Activation("relu"))
 model.add(MaxPooling2D(pool_size=(pool_size, pool_size), dim_ordering='th'))
 
 model.add(Flatten())
-model.add(Dense(256))
+model.add(Dense(3, activation='sigmoid'))
 model.add(Activation("relu"))
 model.add(Dropout(0.5))
 model.add(Dense(classes_num, activation='softmax'))
